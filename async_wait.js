@@ -31,3 +31,15 @@ const getData = async function () {
 	}
 
 }
+
+// using (for await of loop) to get Data for DRY (Donot Repeat Yourself) 
+// (for await of) is the ES9 feature loop 
+
+
+const getData2 = async function() {
+	const arrayOfPromises = urls.map(url => fetch(url));
+	for await (let request of arrayOfPromises) {
+		const data = await request.json();
+		console.log(data);
+	} 
+}
